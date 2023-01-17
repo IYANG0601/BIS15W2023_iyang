@@ -1,0 +1,47 @@
+---
+title: "Lab 3 Warm Up"
+author: "Isaac Yang"
+date: "2023-01-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Creating the Vectors
+```{r}
+plant_height <- c(30.7, 37.6, 28.4, NA, 33.2 )
+plant_mass <-c(1.4, 5.2, 3.7, NA, 4.6)
+plant_height
+plant_mass
+```
+## Combining the Vectors
+```{r}
+plant_experiment <-c(plant_height,plant_mass)
+plant_experiment
+```
+## Creating the Matrix
+```{r}
+plant_experiment_matrix <-matrix(plant_experiment, nrow = 5, byrow = 2)
+plant_experiment_matrix
+```
+
+## Naming the Rows and Columns
+```{r}
+plant_name <- c("Plant 1", "Plant 2", "Plant 3", "Plant 4", "Plant 5")
+rownames(plant_experiment_matrix) <- plant_name
+plant_data <- c("Height", "Mass")
+colnames(plant_experiment_matrix) <- plant_data
+plant_experiment_matrix
+```
+## Means of Each Column
+```{r}
+plant_means <- colMeans(plant_experiment_matrix, na.rm = T)
+plant_means
+```
+## Adding new data to the matrix
+```{r}
+plant_experiment_matrix_final <- rbind(plant_experiment_matrix, plant_means)
+plant_experiment_matrix_final
+```
+
