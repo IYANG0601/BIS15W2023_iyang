@@ -1,0 +1,46 @@
+---
+title: "Lab 4 Warmup"
+author: "Isaac Yang"
+date: "2023-01-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidyverse)
+```
+##Loading Penguins
+```{r}
+??palmerpenguins
+?palmerpenguins
+```
+##Data Set
+```{r}
+penguins <- palmerpenguins::penguins
+```
+##Dimensions of Data Set
+```{r}
+dim(penguins)
+```
+##Names of variables
+```{r}
+colnames(penguins)
+```
+##Number of Individuals
+#table(dataset$variable)
+categorical variables
+```{r}
+table(penguins$island)
+```
+##Average Body Mass
+```{r}
+mean(penguins$body_mass_g, na.rm=T)
+```
+
+
+
+
+
+
