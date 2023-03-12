@@ -1,0 +1,86 @@
+---
+title: "Lab 14 Homework"
+author: "Isaac Yang"
+date: "2023-03-12"
+output:
+  html_document: 
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+    keep_md: yes
+---
+
+## Lab 14 Binder
+If you want to return to the binder, find the [repository and instructions here](https://github.com/hehouts/lab14_binder)
+
+## Instructions
+Answer the following questions in RMarkdown. Please embed all of your code and push your final work to your repository. Be sure to add your name to the author header above.
+
+
+## Questions
+
+1. Look up 'Data Scientist' at https://www.bls.gov/. What degree is required for this career? Is it a growing occupation?  
+
+```r
+#A bachelor's degree is required and it is a growing occupation.
+```
+
+
+2. How would you describe your data science skills on a resume for a job application? Write a blurb that reflects the skills you have learned in this course. 
+
+```r
+#Analyze and present data in a clean, unique, and palatable manner for others to look at.
+```
+
+
+3. What are your current career interests, and how could your R skills support that career path? (hint: this might be good content for your LinkedIn profile ;)
+
+```r
+#I am interested in becoming a professor and teaching a course related to biology or chemistry. R could help me in the research work I have to do, aiding me in data analysis. 
+```
+
+
+4. What about this course has been the most difficult for you? What has been the most rewarding?
+
+```r
+#I struggled a lot around 1/4th through the course. The precise spellings and random errors made it really frustrating at times. I found the ggplot part to be super rewarding as I was finally able to see the fruits of my labor.
+```
+
+
+5. What do you wish you had known, or what skills do you wish you had, before taking this class.
+
+```r
+#I wish that I had a little more background in coding, or had at least some knowledge of what it was like. That would have been incredibly helpful at times. 
+```
+
+
+6. If we had 1 more lab in this class, what would you have liked to learn more about?
+
+```r
+#I just wish we had more time to go over apps. That way it could have been broken down more and made easier to understand. I feel like we had to rush through it a bit and it was sort of confusing. 
+```
+
+
+7. Now that you have (almost!) completed this course, do you plan to persue further data or computer science skills? What do you plan to do?
+
+```r
+#I was hesitating on doing a bioinformatics minor, because I was not sure if I would like working with data. This course showed me that I found data science to actually be very fun. I will probably try to find an internship related to this, or do more coursework using R.
+```
+
+
+8. How important was working with a partner to your success in this class? If this class were transitioned to an online format, how do you think that would affect your understanding?
+
+```r
+#I think working with a partner definetly made it a lot easier. The collaborative environment definetly made coding for the first time less daunting. Since everyone was around the same skill level, it never felt like I was behind. I think an online format would make it harder to connect and have a relationship with my peers.
+```
+
+
+9. Did you complete the class evaluation? Please complete the class evaluation using the link provided in the announcements. Your feedback is very important and we appreciate your time.
+
+```r
+#Yes.
+```
+
+
+## Push your final code to GitHub!
+Please be sure that you check the `keep md` file in the knit preferences. 
