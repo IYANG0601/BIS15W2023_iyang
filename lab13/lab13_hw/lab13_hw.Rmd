@@ -1,0 +1,133 @@
+---
+title: "Lab 13 Homework"
+author: "Isaac Yang"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    theme: spacelab
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+Answer the following questions and complete the exercises in RMarkdown. Please embed all of your code and push your final work to your repository. Your final lab report should be organized, clean, and run free from errors. Remember, you must remove the `#` for the included code chunks to run. Be sure to add your name to the author header above. For any included plots, make sure they are clearly labeled. You are free to use any plot type that you feel best communicates the results of your analysis.  
+
+Make sure to use the formatting conventions of RMarkdown to make your report neat and clean!  
+
+## Load the libraries  
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(janitor)
+library(here)
+library(ggmap)
+``` 
+
+## Load the Data
+We will use two separate data sets for this homework.  
+
+1. The first [data set](https://rcweb.dartmouth.edu/~f002d69/workshops/index_rspatial.html) represent sightings of grizzly bears (Ursos arctos) in Alaska.  
+
+2. The second data set is from Brandell, Ellen E (2021), Serological dataset and R code for: Patterns and processes of pathogen exposure in gray wolves across North America, Dryad, [Dataset](https://doi.org/10.5061/dryad.5hqbzkh51).  
+
+1. Load the `grizzly` data and evaluate its structure.  
+```{r}
+grizzly <- readr::read_csv("data/bear-sightings.csv")
+```
+```{r}
+glimpse(grizzly)
+```
+
+
+2. Use the range of the latitude and longitude to build an appropriate bounding box for your map.  
+```{r}
+grizzly %>% 
+  select(longitude, latitude) %>% 
+  summary()
+```
+```{r}
+longitude_grizzly <- c(-166.2, -131.3)
+latitude_grizzly <- c(55.02, 70.37)
+bbox_grizzly <- make_bbox(longitude_grizzly, latitude_grizzly, f = 0.05)
+```
+
+
+3. Load a map from `stamen` in a terrain style projection and display the map.  
+```{r}
+map_grizzly <- get_map(bbox_grizzly, maptype = "terrain", source = "stamen")
+ggmap(map_grizzly)
+```
+
+
+4. Build a final map that overlays the recorded observations of grizzly bears in Alaska.  
+```{r}
+ggmap(map_grizzly) + 
+  geom_point(data = grizzly, aes(longitude, latitude)) +
+  labs(x= "Longitude", y= "Latitude", title="Grizzly Locations")
+```
+
+
+Let's switch to the wolves data. Brandell, Ellen E (2021), Serological dataset and R code for: Patterns and processes of pathogen exposure in gray wolves across North America, Dryad, [Dataset](https://doi.org/10.5061/dryad.5hqbzkh51).  
+
+5. Load the data and evaluate its structure.  
+```{r}
+wolves <- readr::read_csv("data/wolves_data/wolves_dataset.csv")
+```
+```{r}
+glimpse(wolves)
+```
+
+
+6. How many distinct wolf populations are included in this study? Mae a new object that restricts the data to the wolf populations in the lower 48 US states.  
+```{r}
+wolves %>% 
+  count(pop)
+```
+
+```{r}
+wolves_new <- wolves %>% 
+  filter(pop == "MT" | pop == "YNP" | pop == "GTNP" | pop == "MEXICAN" | pop == "SNP" | pop == "MI")
+wolves_new
+```
+
+7. Use the range of the latitude and longitude to build an appropriate bounding box for your map.  
+```{r}
+wolves_new %>% 
+  select(long, lat) %>% 
+  summary()
+```
+```{r}
+longitude_wolves <- c(-110.99, -86.82)
+latitude_wolves <- c(33.89, 46.83)
+bbox_wolves <- make_bbox(longitude_wolves, latitude_wolves, f = 0.05)
+```
+
+
+8.  Load a map from `stamen` in a `terrain-lines` projection and display the map.  
+```{r}
+map_wolves <- get_map(bbox_wolves, maptype = "terrain-lines", source = "stamen")
+ggmap(map_wolves)
+```
+
+
+9. Build a final map that overlays the recorded observations of wolves in the lower 48 states.  
+```{r}
+ggmap(map_wolves)+
+  geom_point(data = wolves, aes(long, lat), na.rm = T) +
+  labs(x= "Longitude", y= "Latitude", title="Wolf Locations")
+```
+
+
+10. Use the map from #9 above, but add some aesthetics. Try to `fill` and `color` by population.  
+```{r}
+ggmap(map_wolves)+
+  geom_point(data = wolves_new, aes(long, lat, color = pop), na.rm = T) +
+  labs(x= "Longitude", y= "Latitude", title="Wolf Locations")+
+   theme(plot.title = element_text(size = rel(1.25), hjust = 0.5))
+```
+
+
+## Push your final code to GitHub!
+Please be sure that you check the `keep md` file in the knit preferences. 
